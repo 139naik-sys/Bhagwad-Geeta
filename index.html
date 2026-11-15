@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gita in 90 Days</title>
+<link rel="manifest" href="manifest.json"><meta name="theme-color" content="#c2571a"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png">
+<style>
+:root{--bg:#fbf6ec;--fg:#2b2118;--mut:#7a6a58;--card:#fff;--bd:#e4d8c4;--ac:#c2571a;--ok:#2e7d4f;--bad:#b3261e;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17120d;--fg:#f1e8da;--mut:#a89883;--card:#241c14;--bd:#3a2e22;--ac:#f08a4b;--ok:#6fcf97;--bad:#ff8a80}}
+:root[data-theme="dark"]{--bg:#17120d;--fg:#f1e8da;--mut:#a89883;--card:#241c14;--bd:#3a2e22;--ac:#f08a4b;--ok:#6fcf97;--bad:#ff8a80}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font:16px/1.55 Georgia,'Times New Roman',serif;max-width:640px;margin:0 auto;padding:16px 16px 80px}
+h1{font-size:22px;margin:4px 0}h2{font-size:19px;margin:0 0 6px}.mut{color:var(--mut);font-size:14px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px;margin:12px 0}
+nav{display:flex;gap:6px;margin:10px 0}nav button{flex:1}
+button{font:inherit;font-size:15px;background:var(--card);color:var(--fg);border:1px solid var(--bd);border-radius:10px;padding:9px 10px;cursor:pointer}
+button.on,button.pri{background:var(--ac);color:#fff;border-color:var(--ac)}
+.bar{height:8px;background:var(--bd);border-radius:6px;overflow:hidden}.bar i{display:block;height:100%;background:var(--ac)}
+.grid{display:grid;grid-template-columns:repeat(10,1fr);gap:5px}
+.grid button{padding:6px 0;font-size:13px}.grid button.d{background:var(--ok);color:#fff;border-color:var(--ok)}.grid button.t{outline:2px solid var(--ac)}.grid button.r{border-style:dashed}
+textarea{width:100%;min-height:80px;font:inherit;background:var(--bg);color:var(--fg);border:1px solid var(--bd);border-radius:10px;padding:8px}
+.opt{display:block;width:100%;text-align:left;margin:6px 0}.opt.ok{background:var(--ok);color:#fff}.opt.bad{background:var(--bad);color:#fff}
+.sa{font-size:18px;color:var(--ac)}.v{border-top:1px solid var(--bd);padding:10px 0;white-space:pre-line}.v .n{font-size:13px;color:var(--mut)}.v .sk{font-size:19px;line-height:1.7}.v .tr{font-style:italic;color:var(--mut)}.v .en{margin-top:4px}.gd{background:var(--bg);border-left:4px solid var(--ac);padding:10px;margin:10px 0;border-radius:6px}.row{display:flex;gap:8px;align-items:center;justify-content:space-between}
+</style></head><body>
+<h1>🪷 Gita in 90 Days</h1>
+<div class="mut" id="sub"></div>
+<div class="bar" style="margin:8px 0"><i id="pb"></i></div>
+<nav id="nav"></nav>
+<div id="app"></div>
+<script src="data.js"></script><script src="en.js"></script><script src="guide.js"></script>
+<script>
+const V=[47,72,43,42,29,47,30,28,34,42,55,20,35,27,20,24,28,78];
+// name, Sanskrit name, summary, reflection, question, options, answer index
+const C=[
+["Arjuna’s Despair","अर्जुनविषादयोग","On the battlefield, Arjuna sees teachers and kin on both sides and collapses in grief, refusing to fight.","Where in your life have you frozen because every choice seemed to hurt someone?","Who is overcome by despair at the start of the Gita?",["Arjuna","Duryodhana","Sanjaya"],0],
+["Sānkhya Yoga","सांख्ययोग","Krishna teaches that the self is eternal, and that you may act but should not cling to the results (2.47).","What is one task today you can do fully while letting go of the outcome?","Verse 2.47 says your right is to…",["the fruits of action","action alone","both action and fruits"],1],
+["Karma Yoga","कर्मयोग","No one can stay actionless. Act as duty and offering, without craving, and action stops binding you.","Which of your daily duties could you treat as an offering?","Chapter 3 mainly teaches…",["selfless action","quitting all work","ritual only"],0],
+["Jñāna Karma Sannyāsa Yoga","ज्ञानकर्मसंन्यासयोग","Krishna explains divine descent to restore dharma, and how knowledge and action meet in sacrifice.","What does restoring balance look like in your own surroundings?","Why does Krishna say he takes birth (4.7–8)?",["to restore dharma","to win wars","to rest"],0],
+["Karma Sannyāsa Yoga","कर्मसंन्यासयोग","Renunciation and disciplined action both lead to freedom; the wise see them as one.","Can you be calm inside a busy day? What helps?","Chapter 5 compares renunciation of action with…",["disciplined action","fasting","study of grammar"],0],
+["Dhyāna Yoga","ध्यानयोग","The mind can be your friend or your enemy. Moderation and steady practice bring stillness.","What small daily habit would calm your mind?","The mind is described as…",["only an enemy","friend or enemy of the self","irrelevant"],1],
+["Jñāna Vijñāna Yoga","ज्ञानविज्ञानयोग","Krishna describes his higher and lower nature, and four kinds of people who turn to him.","Which of the four reasons (distress, curiosity, gain, wisdom) brought you here?","How many kinds of devotees are named?",["Two","Four","Seven"],1],
+["Akshara Brahma Yoga","अक्षरब्रह्मयोग","What you hold in mind at the end shapes your path, so train the mind to remember the imperishable.","What do you want your mind to return to most often?","What shapes one’s destination at death, per this chapter?",["wealth","what one remembers","age"],1],
+["Rāja Vidyā Rāja Guhya Yoga","राजविद्याराजगुह्ययोग","The royal secret: devotion. Even a simple offering of leaf, flower, fruit or water, given with love, is accepted.","What simple thing can you offer today with full sincerity?","What simple offerings does 9.26 mention?",["gold and land","leaf, flower, fruit, water","only mantras"],1],
+["Vibhūti Yoga","विभूतियोग","Krishna lists his glories across creation so Arjuna can recognise the divine everywhere.","Where have you seen something extraordinary in the ordinary lately?","The chapter is mainly a list of…",["divine glories","battle plans","kings"],0],
+["Viśvarūpa Darśana Yoga","विश्वरूपदर्शनयोग","Arjuna is given divine sight and sees the universal form, awe-inspiring and terrifying.","What in life feels too big to grasp, and how do you respond to it?","What does Arjuna see in Chapter 11?",["the universal form","a temple","his own past"],0],
+["Bhakti Yoga","भक्तियोग","Devotion is described as the surest path, along with the qualities of the dear devotee: kind, steady, free of hatred.","Which quality of the devotee do you most want to grow?","Chapter 12 is centred on…",["devotion","astronomy","kingship"],0],
+["Kṣetra Kṣetrajña Vibhāga Yoga","क्षेत्रक्षेत्रज्ञविभागयोग","The body is the field; the self is its knower. Real knowledge is telling them apart.","When do you identify too strongly with your body or role?","The ‘field’ in this chapter is…",["the body","a farm","the army"],0],
+["Guṇatraya Vibhāga Yoga","गुणत्रयविभागयोग","Nature runs on three qualities: sattva, rajas and tamas. Rising above them brings freedom.","Which guna ruled your day today?","Which is NOT one of the three gunas?",["sattva","rajas","dharma"],2],
+["Puruṣottama Yoga","पुरुषोत्तमयोग","The cosmos is likened to an upside-down ashvattha tree, cut by detachment; the Supreme Person stands beyond.","What attachment would you most like to ‘cut’?","The tree image has its roots…",["below","above","nowhere"],1],
+["Daivāsura Sampad Vibhāga Yoga","दैवासुरसम्पद्विभागयोग","Divine qualities (fearlessness, truth, compassion) are set against demonic ones (pride, anger, greed).","Which divine quality would you strengthen first?","Chapter 16 contrasts…",["divine and demonic qualities","north and south","kings and sages"],0],
+["Śraddhā Traya Vibhāga Yoga","श्रद्धात्रयविभागयोग","Faith, food, sacrifice, austerity and giving each come in three kinds, by guna.","What is one choice you can shift toward the sattvic?","Chapter 17 sorts things into how many kinds?",["Two","Three","Five"],1],
+["Mokṣa Sannyāsa Yoga","मोक्षसंन्यासयोग","The summary. Krishna’s final counsel is surrender and trust, and Arjuna says his doubts are gone (18.73).","After 90 days, what has changed in how you act?","Which verse is called the great final instruction of surrender?",["18.66","2.47","4.7"],0]
+];
+const K="gita90v1";let S={start:null,done:{},note:{},};
+try{S=Object.assign(S,JSON.parse(localStorage.getItem(K)||"{}"))}catch(e){}
+function save(){try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}}
+if(!S.start){S.start=new Date().toISOString().slice(0,10);save()}
+
+// ---- build 90-day schedule ----
+const D=[];const study=[];
+for(let d=1;d<=90;d++){let t=d==1?"orient":d==90?"final":d%7==0?"review":"study";D.push({d,t});if(t=="study")study.push(D[d-1])}
+let raw=V.map(v=>v/701*study.length),al=raw.map(Math.floor),left=study.length-al.reduce((a,b)=>a+b,0);
+raw.map((r,i)=>[r-al[i],i]).sort((a,b)=>b[0]-a[0]).slice(0,left).forEach(x=>al[x[1]]++);
+let si=0;al.forEach((k,c)=>{for(let j=0;j<k;j++){const s=study[si++];s.c=c;s.a=1+Math.floor(j*V[c]/k);s.b=Math.floor((j+1)*V[c]/k)}});
+let seen=[];D.forEach(x=>{if(x.t=="study"&&!seen.includes(x.c))seen.push(x.c);if(x.t=="review"){x.cs=seen;seen=[]}});
+const label=x=>x.t=="orient"?"Orientation":x.t=="final"?"Final review":x.t=="review"?"Review: "+x.cs.map(c=>"Ch "+(c+1)).join(", "):`Ch ${x.c+1}, verses ${x.a}–${x.b}`;
+
+let tab="today",cur=null,qs={};
+const today=()=>Math.min(90,Math.max(1,Math.floor((Date.now()-new Date(S.start+"T00:00:00"))/864e5)+1));
+const doneN=()=>Object.keys(S.done).length;
+const $=id=>document.getElementById(id);
+function streak(){let n=0,d=today();if(!S.done[d])d--;while(d>0&&S.done[d]){n++;d--}return n}
+function questions(x){
+ if(x.t=="orient")return [["How many chapters does the Gita have?",["12","18","24"],1]];
+ let cs=x.t=="study"?[x.c]:x.t=="review"?x.cs:C.map((_,i)=>i);
+ let qa=cs.map(c=>C[c].slice(4));
+ if(x.t=="final")qa=qa.sort(()=>Math.random()-.5).slice(0,6);
+ return qa;
+}
+function top(){$("sub").textContent=`Day ${today()} of 90 · ${doneN()} done · streak ${streak()}`;$("pb").style.width=doneN()/90*100+"%";
+ $("nav").innerHTML=[["today","Today"],["plan","Plan"],["chapters","Chapters"]].map(([k,n])=>`<button class="${tab==k?"on":""}" onclick="tab='${k}';cur=null;draw()">${n}</button>`).join("")}
+function draw(){top();const a=$("app");
+ if(tab=="plan"){a.innerHTML=`<div class="card"><div class="mut" style="margin-bottom:8px">Tap a day to open it. Green = done, dashed = review day.</div><div class="grid">${D.map(x=>`<button class="${S.done[x.d]?"d":""} ${x.d==today()?"t":""} ${x.t=="review"||x.t=="final"?"r":""}" onclick="cur=${x.d};tab='today';draw()">${x.d}</button>`).join("")}</div></div>`;return}
+ if(tab=="chapters"){a.innerHTML=C.map((c,i)=>`<div class="card"><div class="sa">${c.at?"":c[1]}</div><h2>${i+1}. ${c[0]}</h2><div class="mut">${V[i]} verses</div><p>${c[2]}</p></div>`).join("");return}
+ const d=cur||today(),x=D[d-1],qa=questions(x);qs[d]=qs[d]||{};
+ const ch=x.c!=null?C[x.c]:null;
+ a.innerHTML=`<div class="card"><div class="row"><h2>Day ${d}</h2><span class="mut">${label(x)}</span></div>
+ ${ch?`<div class="sa">${ch[1]}</div><h2>${ch[0]}</h2><p>${ch[2]}</p><p class="mut">Read today: Chapter ${x.c+1}, verses ${x.a}–${x.b}. Read slowly, ideally aloud, then answer below.</p>`:""}
+ ${x.c!=null&&x.t=="study"?verses(x):""}
+ ${x.t=="orient"?`<p>Welcome. 18 chapters, 701 verses, 90 days. Most days you read a section, answer a question and write one line. Every 7th day is a review.</p>`:""}
+ ${x.t=="review"?`<p>Revisit what you read this week: ${x.cs.map(c=>C[c][0]).join(", ")}. Re-read your notes, then take the quiz.</p>`:""}
+ ${x.t=="final"?`<p>You have read the whole Gita. Read your Day 1 note below, then take the final quiz.</p>${S.note[1]?`<p class="card"><i>${esc(S.note[1])}</i></p>`:""}`:""}
+ </div>
+ <div class="card"><b>Reflect</b><p>${x.t=="orient"?"Why do you want to understand the Gita? You will read this again on Day 90.":ch&&x.t=="study"?ch[3]:"What stayed with you most?"}</p><textarea oninput="S.note[${d}]=this.value;save()">${esc(S.note[d]||"")}</textarea></div>
+ <div class="card"><b>Quiz</b>${qa.map((q,i)=>`<p>${i+1}. ${q[0]}</p>${q[1].map((o,j)=>{const s=qs[d][i];return `<button class="opt ${s!=null&&j==q[2]?"ok":s==j?"bad":""}" onclick="ans(${d},${i},${j})">${o}</button>`}).join("")}`).join("")}</div>
+ <button class="pri" style="width:100%" onclick="tog(${d})">${S.done[d]?"✓ Done (tap to undo)":"Mark day complete"}</button>`}
+function verses(x){let o="";const gd=GD[`${x.c+1}:${x.a}-${x.b}`];if(gd)o+=`<div class="gd"><b>In plain words</b><br>${esc(gd)}</div>`;for(let v=x.a;v<=x.b;v++){const g=(GV[x.c+1]||{})[v];if(!g)continue;const e=((EN[x.c+1]||{})[v]);o+=`<div class="v"><div class="n">${x.c+1}.${v}</div><div class="sk">${esc(g[0])}</div><div class="tr">${esc(g[1])}</div><div class="en">${e?esc(e):''}</div></div>`}return o}
+function ans(d,i,j){if(qs[d][i]==null){qs[d][i]=j;draw()}}
+function tog(d){S.done[d]?delete S.done[d]:S.done[d]=1;save();draw()}
+function esc(s){return s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]))}
+draw();
+if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});
+</script></body></html>
